@@ -21,7 +21,6 @@
 		072D199A2197E8DE002794AC /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072D19992197E8DE002794AC /* CaptureViewController.swift */; };
 		073E9DB821ADE81A00EB6805 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 073E9DB721ADE81A00EB6805 /* Launch Screen.storyboard */; };
 		073E9DBA21ADFA1600EB6805 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E9DB921ADFA1600EB6805 /* LoginViewController.swift */; };
-		073E9DBC21AE09F500EB6805 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E9DBB21AE09F400EB6805 /* CameraViewController.swift */; };
 		073E9DBE21AE73B700EB6805 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E9DBD21AE73B700EB6805 /* ProfileViewController.swift */; };
 		073E9DC021AE7AD400EB6805 /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 073E9DBF21AE7AD400EB6805 /* ProductCell.xib */; };
 		073E9DC221AF6DE400EB6805 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E9DC121AF6DE300EB6805 /* CameraViewController.swift */; };
@@ -93,7 +92,6 @@
 		072D19992197E8DE002794AC /* CaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureViewController.swift; sourceTree = "<group>"; };
 		073E9DB721ADE81A00EB6805 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		073E9DB921ADFA1600EB6805 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		073E9DBB21AE09F400EB6805 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CameraViewController.swift; path = "/Users/Omar/Desktop/code/bekam/bekam/View Controllers/CameraViewController.swift"; sourceTree = "<absolute>"; };
 		073E9DBD21AE73B700EB6805 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		073E9DBF21AE7AD400EB6805 /* ProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductCell.xib; sourceTree = "<group>"; };
 		073E9DC121AF6DE300EB6805 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CameraViewController.swift; path = "/Users/Omar/Desktop/code/bekam/bekam/View Controllers/CameraViewController.swift"; sourceTree = "<absolute>"; };
@@ -305,7 +303,6 @@
 				07B0C03421AAB1D3006D7DF1 /* ChatViewController.swift */,
 				073E9DB921ADFA1600EB6805 /* LoginViewController.swift */,
 				073E9DC121AF6DE300EB6805 /* CameraViewController.swift */,
-				073E9DBB21AE09F400EB6805 /* CameraViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -613,7 +610,6 @@
 				07C4A6B0218BB5D50093157F /* ProductDetailsController.swift in Sources */,
 				07B0C02721AA639E006D7DF1 /* Message.swift in Sources */,
 				073E9DC221AF6DE400EB6805 /* CameraViewController.swift in Sources */,
-				073E9DBC21AE09F500EB6805 /* CameraViewController.swift in Sources */,
 				07E5226221688473001B148A /* LibararyClasses.swift in Sources */,
 				073E9DBA21ADFA1600EB6805 /* LoginViewController.swift in Sources */,
 				07B0C03321AAB175006D7DF1 /* MessageContent.swift in Sources */,

@@ -17,6 +17,12 @@ public class Message {
     var isNew:Bool?
     var contents = MessageContents()
     
+    public func getAllContents() -> [MessageContent] {
+        
+        return contents.getAll()
+        
+    }
+    
     public func add(string:String){
         contents.string = StringContent(string: string)
     }

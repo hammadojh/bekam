@@ -83,6 +83,26 @@ public class MessageContents {
         return location != nil
     }
     
+    public func getAll() -> [MessageContent] {
+        
+        var contents = [MessageContent]()
+        
+        if hasStringContent(){
+            contents.append(string!)
+        }
+        
+        if hasLocationContent() {
+            contents.append(location!)
+        }
+        
+        if hasImageContent() {
+            contents.append(image!)
+        }
+        
+        return contents
+        
+    }
+    
     
     
 }

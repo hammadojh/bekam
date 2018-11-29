@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/Omar/Desktop/code/bekam/bekam/View Controllers/CameraViewController.swift">
-   </FileRef>
-   <FileRef
       location = "group:bekam.xcodeproj">
    </FileRef>
    <FileRef

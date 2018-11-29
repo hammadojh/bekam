@@ -39,9 +39,20 @@ class MessageCell: UITableViewCell{
         label.layer.masksToBounds = true
     }
     
-    func setMessageText(messageLabel:UILabel){
-        let messageText = message?.getSummaryText()
-        messageLabel.text = messageText!
+    func setMessageText(messageView:UIView){
+        
+        guard let messageContents = message?.getAllContents() else {
+            print("no contents")
+            return
+        }
+
+        for content in messageContents {
+            
+            let messageViewer = TextMessageViewer()
+            messageViewer.displayMessage(content: content, view: messageView)
+            
+        }
+        
     }
     
     func setupImageView(imageView:UIImageView){
@@ -78,7 +89,7 @@ class SenderMessageCell: MessageCell {
     @IBOutlet weak var timeLabel: UILabel!
     
     override func messageDidSet(){
-        setMessageText(messageLabel: messageLabel)
+        setMessageText(messageView: messageLabel)
         setTime(timeLabel: timeLabel)
     }
     
@@ -112,7 +123,7 @@ class ReciverMessageCell: MessageCell {
     @IBOutlet weak var timeLabel: UILabel!
     
     override func messageDidSet(){
-        setMessageText(messageLabel: messageLabel)
+        setMessageText(messageView: messageLabel)
         setTime(timeLabel: timeLabel)
     }
     
@@ -137,6 +148,84 @@ class ReciverMessageCell: MessageCell {
         label.layer.maskedCorners = [ .layerMinXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
     }
     
+}
+
+class TextMessageViewer : MessageViewer {
+    
+    var messageAdapter : MessageAdapter!
+    
+    func displayMessage(content:MessageContent,view:UIView){
+        
+        if let label = view as? UILabel, let stringContent = content as? StringContent {
+            
+            label.text = stringContent.getTextSummary()
+            
+        }else {
+            
+            messageAdapter = MessageAdapter()
+            messageAdapter.displayMessage(content: content, view: view)
+            
+        }
+        
+    }
+}
+
+protocol MessageViewer {
+    func displayMessage(content:MessageContent,view:UIView)
+}
+
+class MessageAdapter : MessageViewer {
+    
+    var advMsgViewer:AdvancedMessageViewer!
+    
+    func displayMessage(content:MessageContent,view:UIView){
+        
+        if let _ = content as? ImageContent {
+            advMsgViewer = ImageMessageViewer()
+        }else if let _ = content as? LocationContent{
+            advMsgViewer = ImageMessageViewer()
+        }else{
+            print("incompatible")
+        }
+        
+        advMsgViewer.displayMessage(content: content, view: view)
+        
+    }
+    
+}
+
+protocol AdvancedMessageViewer : MessageViewer {}
+
+class ImageMessageViewer : AdvancedMessageViewer {
+    
+    func displayMessage(content: MessageContent, view: UIView) {
+        
+        // load the image
+        // set the image to the view
+    }
+    
+}
+
+class LocationMessageViewer : AdvancedMessageViewer {
+    
+    func displayMessage(content: MessageContent, view: UIView) {
+        
+        // load the location
+        // set it to the view
+    }
     
     
 }
+
+class LinkMessageViewer : AdvancedMessageViewer {
+    
+    func displayMessage(content: MessageContent, view: UIView) {
+        
+        // load the link
+        // display it to the view
+        
+    }
+    
+}
+
+
