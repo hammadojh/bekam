@@ -10,13 +10,13 @@ import UIKit
 
 class ProductCell: UICollectionViewCell {
     
+    //observers
+    var observer:ProductCellObserver?
+    
     // ui
     @IBOutlet var image:UIImageView!
     @IBOutlet var chatButton:UIButton!
     @IBOutlet var priceLabel:PriceLabel!
-    
-    //observers
-    var observer:ProductCellObserver?
     
     //model
     var product:Product! {
@@ -104,3 +104,129 @@ class ProductCell: UICollectionViewCell {
     }
     
 }
+
+/////////////////////// HELPING CLASSES /////////////////////////
+
+
+class PriceLabelFactory {
+    
+    // get label
+    
+    public func getLabel(priceLabel:PriceLabel,price:Double,rent:Bool) -> PriceLabel {
+        
+        if price == 0 {
+            return FreePriceLabel(frame:priceLabel.frame,price:price)
+        }else if(rent){
+            return RentPriceLabel(frame:priceLabel.frame,price:price)
+        }else{
+            return NormalPriceLabel(frame:priceLabel.frame,price:price)
+        }
+        
+    }
+    
+    private static var instance:PriceLabelFactory?
+    private init(){}
+    
+    // Get instance
+    
+    static func getInstance() -> PriceLabelFactory {
+        
+        if let inst = instance {
+            return inst
+        }else{
+            instance = PriceLabelFactory()
+            return instance!
+        }
+    }
+    
+    
+    
+}
+
+// Super price label
+
+class PriceLabel:UILabel {
+    
+    private var price:Double?
+    
+    init(frame: CGRect, price:Double) {
+        super.init(frame: frame)
+        self.price = price
+        setText(text: "$\(Int(getPrice()))")
+        setupLabel()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder:aDecoder)
+        setupLabel()
+    }
+    
+    
+    func setupLabel(){
+        layer.cornerRadius = 10
+        layer.masksToBounds = true
+    }
+    
+    func copy(priceLabel:PriceLabel){
+        setText(text: priceLabel.text!)
+        self.backgroundColor = priceLabel.backgroundColor
+        self.textColor = priceLabel.textColor
+    }
+    
+    func setText(text:String){
+        self.text = " \(text) "
+    }
+    
+    func getPrice() -> Double {
+        return price!
+    }
+    
+}
+
+
+// FREE PRICE LABEL
+
+class FreePriceLabel:PriceLabel {
+    
+    static let LABEL_TEXT = "😍 Free"
+    static let LABEL_COLOR = UIColor.red
+    
+    override func setupLabel(){
+        super.setupLabel()
+        setText(text: FreePriceLabel.LABEL_TEXT)
+        self.backgroundColor = FreePriceLabel.LABEL_COLOR
+        self.textColor = UIColor.white
+    }
+    
+    override func setText(text: String) {
+        super.setText(text: FreePriceLabel.LABEL_TEXT)
+    }
+    
+}
+
+class NormalPriceLabel:PriceLabel {
+    
+    override func setupLabel(){
+        super.setupLabel()
+        self.backgroundColor = UIColor.white
+        self.textColor = UIColor.black
+    }
+    
+    override func setText(text: String) {
+        //
+    }
+}
+
+class RentPriceLabel:PriceLabel {
+    
+    override func setupLabel(){
+        super.setupLabel()
+        self.backgroundColor = UIColor.purple
+        self.textColor = UIColor.white
+    }
+    
+    override func setText(text: String) {
+        //  
+    }
+}
+

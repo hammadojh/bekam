@@ -15,8 +15,6 @@ class ProductsViewController: BaseUIViewController, UISearchBarDelegate, UIColle
     var products:[Product] = []
     var selectedIndex:Int?
     
-    let images = ["home","note","car","phone"]
-
     // ui
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -104,14 +102,17 @@ class ProductsViewController: BaseUIViewController, UISearchBarDelegate, UIColle
         if (products[indexPath.item].userId == firUser?.uid ) {
             nextVC.state = MyProductDetailsState(viewController: nextVC)
             registerDismissObserver()
-            print("My")
         }else {
             nextVC.state = OtherProductDetailsState(viewController: nextVC)
-            print("Other")
         }
         
         selectedIndex = indexPath.item
         nextVC.product = products[indexPath.item]
+        
+        let selectedCell = collectionView.cellForItem(at: indexPath) as! ProductCell
+        if let image =  selectedCell.image.image {
+            nextVC.bgImage = image
+        }
         
         let nav = UINavigationController(rootViewController: nextVC)
         nav.isNavigationBarHidden = false

@@ -88,7 +88,7 @@ public class MessageContents {
         var contents = [MessageContent]()
         
         if hasStringContent(){
-            contents.append(string!)
+            contents.append(string! )
         }
         
         if hasLocationContent() {

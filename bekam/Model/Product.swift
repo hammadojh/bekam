@@ -8,19 +8,38 @@
 
 import Foundation
 
+
+
+/// Product Class
+/// used to hold products
+
 public class Product {
     
-    var name:String?
-    var imageName:String?
-    var price:Double?
-    var city:String?
-    var imagesURLS:[String?]?
-    var addedDate : Date?
-    var available : Bool?
-    var categories : [String?]?
-    var description: String?
+    /// Id of the product
+    var id:String?{
+        get { return self.id }
+        set (newID) { if newID?.isEmpty ?? false {return} }
+    }
+    /// Id of the user that posted the product
     var userId:String?
-    var id:String?
+    /// name of the product. Might be empty
+    var name:String?
+    /// price of the product
+    var price:Double?
+    /// city that the product is located in
+    var city:String?
+    /// urls for the different images of the product
+    var imagesURLS:[String?]?
+    /// date product was added
+    var addedDate : Date?
+    /// weather it is available or not
+    var available : Bool?
+    /// different categories of the product
+    var categories : [String?]?
+    /// the description of the product
+    var description: String?
+    
+    /// Default initializer
     
     public init() {
         name = ""
@@ -32,6 +51,12 @@ public class Product {
         categories = []
         description = ""
     }
+    
+    
+    
+    /// Copy initializer from another product
+    ///
+    /// - Parameter from: the other product that you want to copy from
     
     public init(from:Product){
        
@@ -47,6 +72,10 @@ public class Product {
         id = from.id
         
     }
+    
+    /// Initializer from a dictionary object. It maps the fields of the dictionary to the properties of the object if they are found
+    ///
+    /// - Parameter dict: the dictionary that you want to copy from
     
     public init( dict:[String:Any] ){
         
@@ -95,16 +124,9 @@ public class Product {
         
     }
     
-    private func calculateDistance() -> Double {
-        //TODO: Complete
-        return 10
-    }
-    
-    private func getImagesURLs() -> [String]{
-        //TODO: Complete
-        return ["kalifa"]
-    }
-    
+    /// Sets the date using a string formatted date
+    ///
+    /// - Parameter dateString: The formatted date string.
     private func setDate(dateString:String){
         self.addedDate = Date.createDateFromString(stringDate: dateString)
     }

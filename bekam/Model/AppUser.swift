@@ -9,20 +9,36 @@
 import Foundation
 import UIKit
 
+/// App User Class. Used to hold the current loged in user.
 public class AppUser {
     
-    var id:String?
+    /// id of the user
+    var id:String? {
+        get { return self.id }
+        set (newID) { if newID?.isEmpty ?? false {return} }
+    }
+    /// name of the user
     var name:String?
+    /// email of the usre
     var email:String?
+    /// mobile of the user
     var mobile:String?
+    /// city of the user
     var city:String?
+    /// profile image url of the user
     var profileImageURL:String?
     
+    /// initializer by an id
+    ///
+    /// - Parameter id: the id of the user
     init(id:String){
         self.id = id
         self.profileImageURL = "\(Int.random(in: 1 ..< 7 ))" //default images number
     }
     
+    /// Initializer from a dictionary object. It maps the fields of the dictionary to the properties of the object if they are found
+    ///
+    /// - Parameter dict: the dictionary that you want to copy from
     public init(dict:[String:Any]){
         
         if let id = dict["id"] as? String {
@@ -51,6 +67,10 @@ public class AppUser {
         
     }
     
+    /// Creates a dictionary from the current object
+    ///
+    /// - Returns: a dictionary mapping the current fields and the name of the keys and the same as the variable names
+    
     public func toDict() -> [String:Any] {
         
         var dict = [String:Any]()
@@ -62,6 +82,10 @@ public class AppUser {
         
         return dict
     }
+    
+    /// returns the profile image of the user.
+    ///
+    /// - Returns: the profile image of the user
     
     public func getImage() -> UIImage{
         

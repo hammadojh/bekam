@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Firebase
 
-class ProfileViewController:BaseUIViewController,UICollectionViewDelegate, UICollectionViewDataSource,LiquidLayoutDelegate{
+class ProfileViewController:BaseUIViewController,UICollectionViewDelegate, UICollectionViewDataSource,LiquidLayoutDelegate, ProductCellObserver{
     
     //model
     var products:[Product] = []
@@ -24,6 +24,7 @@ class ProfileViewController:BaseUIViewController,UICollectionViewDelegate, UICol
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var emptyLabel: UILabel!
     var profileImageView:UIImageView!
+    var signoutBtn:UIButton!
     
     //flags
     var loaded = false
@@ -79,13 +80,14 @@ class ProfileViewController:BaseUIViewController,UICollectionViewDelegate, UICol
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "filter_icn")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(navItemClicked))
         
         //right
-        let signoutBtn = UIButton(frame: CGRect(x: 0, y: 0, width: 70, height: 28))
+        signoutBtn = UIButton(frame: CGRect(x: 0, y: 0, width: 70, height: 28))
         let buttonText = "Signout"
         let attributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)]
         signoutBtn.setAttributedTitle(NSAttributedString(string: buttonText, attributes: attributes), for: .normal)
         signoutBtn.setTitleColor(primaryColor, for: .normal)
         signoutBtn.frame.size = CGSize(width: getSizeOfText(text: (signoutBtn.titleLabel?.text)!, fontSize: 20).width + 8, height: signoutBtn.frame.height)
         signoutBtn.addTarget(self, action: #selector(signoutClicked), for: .touchUpInside)
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: signoutBtn)
     }
     
@@ -257,8 +259,23 @@ class ProfileViewController:BaseUIViewController,UICollectionViewDelegate, UICol
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
         guard let height = navigationController?.navigationBar.frame.height else { return }
+        
         moveAndResizeImage(for: height)
+        removeSignoutButtonOnScroll(height:height)
+ 
+    }
+    
+    func removeSignoutButtonOnScroll(height:CGFloat){
+        
+        let ratio = ( height / Const.NavBarHeightLargeState )
+        let alpha = ratio * 2 - 1
+        
+        print("alpha = ")
+        
+        signoutBtn.alpha = alpha
+        
     }
     
     private func moveAndResizeImage(for height: CGFloat) {
@@ -289,6 +306,10 @@ class ProfileViewController:BaseUIViewController,UICollectionViewDelegate, UICol
         profileImageView.transform = CGAffineTransform.identity
             .scaledBy(x: scale, y: scale)
             .translatedBy(x: xTranslation, y: yTranslation)
+    }
+    
+    func notfiy(product: Product) {
+        print("notified")
     }
     
     

@@ -325,10 +325,10 @@
             </objects>
             <point key="canvasLocation" x="3480.8000000000002" y="-429.31034482758622"/>
         </scene>
-        <!--Capture View Controller-->
+        <!--Capture-->
         <scene sceneID="fys-lu-kzi">
             <objects>
-                <viewController storyboardIdentifier="captureViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ve4-Yd-t9j" customClass="CaptureViewController" customModule="bekam" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="captureViewController" title="Capture" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ve4-Yd-t9j" customClass="CaptureViewController" customModule="bekam" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Wza-6y-w7u">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -481,10 +481,10 @@
             </objects>
             <point key="canvasLocation" x="1244" y="285.96059113300493"/>
         </scene>
-        <!--Product Details Controller-->
+        <!--Product Details-->
         <scene sceneID="p35-pG-F8b">
             <objects>
-                <viewController storyboardIdentifier="productDetailsController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="obf-Rh-Q7N" customClass="ProductDetailsController" customModule="bekam" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="productDetailsController" title="Product Details" useStoryboardIdentifierAsRestorationIdentifier="YES" id="obf-Rh-Q7N" customClass="ProductDetailsController" customModule="bekam" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KYB-er-QKK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -611,10 +611,10 @@
             </objects>
             <point key="canvasLocation" x="3481" y="318"/>
         </scene>
-        <!--Login View Controller-->
+        <!--Login-->
         <scene sceneID="uf6-67-szf">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" id="Jvv-Bd-Hlq" customClass="LoginViewController" customModule="bekam" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" title="Login" id="Jvv-Bd-Hlq" customClass="LoginViewController" customModule="bekam" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="04o-69-K6F">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -753,10 +753,10 @@
             </objects>
             <point key="canvasLocation" x="2713" y="-1131"/>
         </scene>
-        <!--Chat-->
+        <!--Sessions-->
         <scene sceneID="fjX-sB-2gR">
             <objects>
-                <viewController title="Chat" id="fs2-1t-4d7" customClass="ChatSessionsViewController" customModule="bekam" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Sessions" id="fs2-1t-4d7" customClass="ChatSessionsViewController" customModule="bekam" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="630-au-L7G">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -862,10 +862,10 @@
             </objects>
             <point key="canvasLocation" x="493.60000000000002" y="-423.39901477832512"/>
         </scene>
-        <!--Image-->
+        <!--Camera-->
         <scene sceneID="gLc-9p-SFT">
             <objects>
-                <viewController title="Image" id="6sK-wn-zum" customClass="CameraViewController" customModule="bekam" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Camera" id="6sK-wn-zum" customClass="CameraViewController" customModule="bekam" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="R4r-dF-g4k">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

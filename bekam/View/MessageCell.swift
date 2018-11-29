@@ -171,6 +171,7 @@ class TextMessageViewer : MessageViewer {
 }
 
 protocol MessageViewer {
+    
     func displayMessage(content:MessageContent,view:UIView)
 }
 

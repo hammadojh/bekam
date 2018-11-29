@@ -3,11 +3,15 @@ import Firebase
 
 class ApiServices {
     
+    fileprivate let chatApi = ChatApi()
+    fileprivate let productsApi = ProductsApi()
+    fileprivate let imageApi = ImageApi()
+    fileprivate let userApi = UserApi()
+    
     // get one session
     
     public func getSession(buyerId:String, productId:String, completion: @escaping (DataSnapshot?,Error?)->Void){
         
-        let chatApi = ChatApi()
         chatApi.get(buyerId: buyerId, productId: productId, completion: completion)
         
     }
@@ -16,7 +20,6 @@ class ApiServices {
     
     public func getLastMessage(sessionId:String,completion: @escaping (DataSnapshot?,Error?)->Void){
         
-        let chatApi = ChatApi()
         chatApi.getLastMessage(sessionId: sessionId, completion: completion)
         
     }
@@ -25,7 +28,6 @@ class ApiServices {
 
     public func addNewUser(user:AppUser,userId:String,completion:@escaping (DatabaseReference?,Error?)-> Void){
         
-        let userApi = UserApi()
         userApi.post(userId: userId, user: user, completion: completion)
     }
     
@@ -34,7 +36,6 @@ class ApiServices {
     
     public func sendMessage(message:Message,sessionId:String,completion:@escaping (DatabaseReference?,Error?)-> Void){
         
-        let chatApi = ChatApi()
         chatApi.post(message: message, sessionId:sessionId, completion: completion)
         
     }
@@ -44,8 +45,7 @@ class ApiServices {
     
     public func loadProduct(productId:String,completion: @escaping (DataSnapshot?,Error?)->Void){
         
-        let prodcutApi = ProductsApi()
-        prodcutApi.load(productid: productId, completion: completion)
+        productsApi.load(productid: productId, completion: completion)
         
     }
     
@@ -53,7 +53,6 @@ class ApiServices {
     
     public func postSession(session:ChatSession,sellerId:String, completion:@escaping (DatabaseReference?,Error?)-> Void){
         
-        let chatApi = ChatApi()
         chatApi.post(session: session, sellerId:sellerId, completion: completion)
         
     }
@@ -62,7 +61,6 @@ class ApiServices {
     
     public func loadChat(sessionId:String,completion: @escaping (DataSnapshot?,Error?)->Void){
         
-        let chatApi = ChatApi()
         chatApi.get(sessionId: sessionId, completion: completion)
         
     }
@@ -71,7 +69,6 @@ class ApiServices {
     
     public func getAllSessionForUser(userId:String,completion: @escaping (DataSnapshot?,Error?)->Void){
         
-        let chatApi = ChatApi()
         chatApi.get(buyerId: userId, completion: completion)
         
     }
@@ -80,7 +77,6 @@ class ApiServices {
     
     public func getUser(productId:String,completion: @escaping (DataSnapshot?,Error?)->Void){
         
-        let userApi = UserApi()
         userApi.get(productId: productId, completion: completion)
         
     }
@@ -89,7 +85,6 @@ class ApiServices {
     
     public func getUser(id:String,completion: @escaping (DataSnapshot?,Error?)->Void){
         
-        let userApi = UserApi()
         userApi.get(id: id, completion: completion)
         
     }
@@ -98,7 +93,6 @@ class ApiServices {
     
     public func loadImage(url:String,completion: @escaping (Data?,Error?)->Void){
         
-        let imageApi = ImageApi()
         imageApi.load(url:url,completion: completion)
         
     }
@@ -107,7 +101,6 @@ class ApiServices {
     
     public func loadProducts(userId:String = "" ,completion: @escaping (DataSnapshot?,Error?)->Void){
         
-        let productsApi = ProductsApi()
         productsApi.load(userId:userId,completion: completion)
         
     }
@@ -116,7 +109,6 @@ class ApiServices {
     
     public func updateProduct(product:Product, completion:@escaping (DatabaseReference?,Error?)-> Void){
         
-        let productsApi = ProductsApi()
         productsApi.update(product: product) { (ref, error) in
             completion(ref,error)
         }
@@ -135,9 +127,6 @@ class ApiServices {
             compressedImage = compressedImage.resizeToBeLessThan(maxSizeInKB: compressToSize!)
         }
         
-        let productsApi = ProductsApi()
-        let imageApi = ImageApi()
-        
         // post the product without an image
         
         productsApi.post(price: price) { (ref, error) in
@@ -150,7 +139,7 @@ class ApiServices {
                 return
             }
             
-            imageApi.post(image: compressedImage, productId: (ref?.key)!, imageName: nil, completion: { (meta, error, _imageName , productId) in
+            self.imageApi.post(image: compressedImage, productId: (ref?.key)!, imageName: nil, completion: { (meta, error, _imageName , productId) in
                 
                 // when completed link the image to the product
                 
@@ -160,7 +149,7 @@ class ApiServices {
                     return
                 }
                 
-                productsApi.addImageLink(imageName: _imageName!, productId: productId!, completion: { (ref, error) in
+                self.productsApi.addImageLink(imageName: _imageName!, productId: productId!, completion: { (ref, error) in
                     
                     guard error == nil else {
                         print("error storing the image")
@@ -201,7 +190,6 @@ fileprivate class ImageApi {
         
         // if the image is cached go back
         if let data = ImageApi.imagesCache.object(forKey: url as NSString) {
-            print("Image in cash")
             completion(data as Data,nil)
             return
         }
