@@ -7,7 +7,30 @@
 		<key>bekam.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>7</integer>
+		</dict>
+		<key>bekam.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>07088B49215F2DB90003202B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>07088B5D215F2DBA0003202B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>07088B68215F2DBA0003202B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
